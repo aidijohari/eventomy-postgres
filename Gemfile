@@ -48,3 +48,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# CUSTOM
+gem 'devise', '~> 4.2'
+gem 'toastr-rails'
+
+gem 'omniauth', '~> 1.6'
+gem 'omniauth-facebook', '~> 8.0'
