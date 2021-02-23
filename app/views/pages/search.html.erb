@@ -1,0 +1,130 @@
+<div id="main">
+    <div id="left">
+        <!-- SEARCH PANEL -->
+        <div class="row" style="width:80%;">
+            <br/>
+            <div class="collapse" id="collapsePanel">
+                <%= search_form_for @search, url: search_path, remote: true do |f| %>
+                
+                    <div class="row">
+                        <div class="col-8">
+                            <label>Price Range:</label>
+                        </div>
+                        <div class="col-2">
+                            <label>Min Price:</label>
+                            <%= f.text_field :price_gteq, class: "form-control"  %>
+                        </div>
+                        <div class="col-2">
+                            <label>Max Price:</label>
+                            <%= f.text_field :price_lteq, class: "form-control"  %>
+                        </div>
+                    </div>
+                    <hr/>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <%= check_box_tag "q[venue_type_eq_any][]", "Hall" %> Hall
+                        </div>
+                        <div class="col-4">
+                            <%= check_box_tag "q[venue_type_eq_any][]", "House" %> House
+                        </div>
+                        <div class="col-4">
+                            <%= check_box_tag "q[venue_type_eq_any][]", "Hotel" %> Hotel
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group select">
+                                <label>Accomodate</label>
+                                <%# <%= f.select :accomodate_gteq, [["< 50", 50], ["< 100", 100], ["< 200", 200]], id: "accomodate", prompt: "Select..", class: "form-control" %> %>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row text-center">
+                        <%= f.submit "Search", class: "btn btn-primary"%>
+                    </div>
+
+                <% end %>
+
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="col-12 p-0">
+                    <h5>Venues</h5>
+                    <hr/>
+                </div>
+
+                <%= render partial: 'venues/venues_list', locals: {venues: @arrVenues} %>
+
+            </div>
+
+            <div class="row">
+                <div class="col-12 p-0">
+                    <h5>Nearby</h5>
+                    <hr/>
+                </div>
+
+                <%= render partial: 'venues/venues_list', locals: {venues: @venues_all} %>
+
+            </div>
+        </div>
+
+    </div>
+    <div id="right">
+        <!-- GOOGLE MAPS -->
+        <div id="map" class="w-100 h-100 col-12"></div>
+
+        <script>
+
+            function initialize(){
+
+                var location = {lat: 3.1390, lng: 101.6869}
+
+                <% if @arrVenues.length > 0 %>
+                    location = {lat: <%= @arrVenues[0].latitude %>, lng: <%= @arrVenues[0].longitude %>}
+                <% end %>
+
+                var map = new google.maps.Map(document.getElementById('map'),{
+                    center: location,
+                    zoom: 12
+                });
+
+                var marker, infowindow;
+
+                <% @arrVenues.each do |venue| %>
+                    marker = new google.maps.Marker({
+                        position: {lat: <%= venue.latitude %>, lng: <%= venue.longitude %>},
+                        map: map
+                    });
+
+                    infowindow = new google.maps.InfoWindow({
+                        content: "<div class='map_price'>RM" + <%= venue.price %> + "</div>"
+                    });
+
+                    infowindow.open(map, marker)
+                <% end %>
+
+                <% @venues_all.each do |venue| %>
+                    marker = new google.maps.Marker({
+                        position: {lat: <%= venue.latitude %>, lng: <%= venue.longitude %>},
+                        map: map
+                    });
+
+                    infowindow = new google.maps.InfoWindow({
+                        content: "<div class='map_price'>RM" + <%= venue.price %> + "</div>"
+                    });
+
+                    infowindow.open(map, marker)
+                <% end %>
+
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize)
+
+        </script>
+
+    </div>
+</div>

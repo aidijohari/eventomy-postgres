@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-3">
+        <%= render 'venue_menu' %>
+    </div>
+    
+    <div class="col-9">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Venue Description</h5>
+                <div class="card-text">
+
+                    <%= form_for @venue do |f| %>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Listing Name:</label>
+                                    <%= f.text_field :listing_name, placeholder: "Venue name", class: "form-control" %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Summary:</label>
+                                    <%= f.text_area :summary, rows: 8, col: 10, placeholder: "Summary text", class: "form-control" %>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div><%= f.submit "Save", class: "btn btn-success" %></div>
+                    <% end %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

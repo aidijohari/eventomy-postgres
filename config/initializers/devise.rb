@@ -311,6 +311,7 @@ Devise.setup do |config|
 
 
   #CUSTOM
-  config.omniauth :facebook, '356485868929306', '26dc9c8ff923e5037a9065fdca093438', scope: 'email', info_fields: 'email, name'
+  #Facebook login/signup 
+  config.omniauth :facebook, '356485868929306', '26dc9c8ff923e5037a9065fdca093438', scope: 'email', info_fields: 'email, name', secure_image_url: true
 
 end

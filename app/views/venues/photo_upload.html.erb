@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-3">
+        <%= render 'venue_menu' %>
+    </div>
+    
+    <div class="col-9">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Upload Photo</h5>
+                <div class="card-text">
+
+                <%= form_for @venue do |f| %>
+
+                    <div class="row">
+                        <div class="col-md-4 select">
+                            <div class="form-group">
+                            <label>Upload Photo:</label>
+                            <%= f.file_field :image, :class => 'form-control' %>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div><%= f.submit "Upload", class: "btn btn-success" %></div>
+
+                <% end %>
+                
+
+                <%# <% @venue.image.each do |image| %>
+                    <%# <%= link_to rails_blob_path(file, disposition: "attachment") do %>
+                    <%#= image_tag "placeholder.png", alt: "Download file" %>
+                <%# end %>
+
+                <% if @venue.image.present? %>
+                    <div class="card mt-5 col-4 p-0"> 
+                        <%= image_tag(@venue.image, class: "card-img-top") %> 
+                        <div class="card-body">
+                            <div class="card-text">
+                                <a href="#">
+                                    <i class="ml-auto far fa-trash-alt" style="float:right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

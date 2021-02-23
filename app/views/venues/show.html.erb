@@ -1,0 +1,183 @@
+<% provide :head_tags do %>
+  <meta name='turbolinks-visit-control' content='reload'>
+  <script>
+    document.addEventListener("DOMContentLoaded", function(){
+        initMap(<%=@venue.latitude%>, <%=@venue.longitude%>)
+    });
+  </script>
+<% end %>
+
+<style>
+
+.badge.badge-type{
+    border-radius: 0px !important;
+    color: cadetblue;
+    background: transparent;
+    border: 2px solid cadetblue;
+}
+
+.badge.badge-type > p{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+</style>
+
+
+<div class="row">
+
+    <div class="card mb-3 w-100">
+        <%= image_tag @venue.image, width: "100%" %>
+        <div class="card-body">
+            <div class="row">
+
+                <!-- LEFT PANEL -->
+                <div class="col-md-12">
+
+                    <!-- Listing Name -->
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="col-12 mb-3">
+                                <h1 class="mb-0"><%= @venue.listing_name %></h1>
+                                <small class="text-small">SEATED: 200 / STANDING: 400</small>
+                            </div>
+                            <div class="col-6">
+                                <%= @venue.address %>
+                                <br/>
+                                <div class="badge badge-secondary mt-2 px-3 py-2">
+                                    <p class="m-0"> New </p>
+                                </div>
+                                <div class="badge badge-primary mt-2 px-3 py-2">
+                                    <p class="m-0"> Promotion </p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="badge badge-info badge-type mt-3 px-4 py-2">
+                                    <p class="m-0"><%= @venue.venue_type %></p>
+                                </div>
+                                <div class="badge badge-info badge-type mt-3 px-4 py-2">
+                                    <p class="m-0">Cyberjaya</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <%= image_tag avatar_url(@venue.user), class: "rounded-circle avatar-large", style: "max-width:120px; border: 4px solid cadetblue" %><br/><br/>
+                            <p class="">
+                                <%= @venue.user.fullname %>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+            </div>
+        </div>
+        <hr/>
+
+        <!-- SUMMARY SECTION -->
+        <div class="card-body py-5">
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div class="col-3">
+                        <h4>Summary</h4>
+                    </div>
+                    <div class="col-9">
+                        <%= simple_format(@venue.summary) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- EVENTS / PORTFOLIOS SECTION -->
+        <div class="card-body bg-secondary text-white py-5">
+            <div class="row">
+                <div class="col-12">
+                    <div class="col-3 mb-4">
+                        <h4>Events</h4>
+                    </div>
+                    <div class="row m-0">
+                        <div class="col-3">
+                            <div class="card bg-dark text-white">
+                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
+                                    <h5 class="card-title">Event Day @ XYZ</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn btn-primary float-right">
+                                        Read more
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card bg-dark text-white">
+                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
+                                    <h5 class="card-title">Event Day @ ABC</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn btn-primary float-right">
+                                        Read more
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card bg-dark text-white">
+                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
+                                    <h5 class="card-title">Event Day @ Christmas</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn btn-primary float-right">
+                                        Read more
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card bg-dark text-white">
+                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
+                                    <h5 class="card-title">Event Day @ Christmas</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn btn-primary float-right">
+                                        Read more
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GOOGLE MAPS SECTION -->
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col-12 d-flex">
+                    <div id="map" class="w-100 col-12" style="min-height:400px;"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+  function initMap(lat, lng) {
+    var myCoords = new google.maps.LatLng(lat, lng);
+    var mapOptions = {  
+      center: myCoords,
+      zoom: 14
+    };
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    var marker = new google.maps.Marker({
+      position: myCoords,
+      map: map
+    });
+
+    infoWindow.open(map, marker);
+  }
+</script>

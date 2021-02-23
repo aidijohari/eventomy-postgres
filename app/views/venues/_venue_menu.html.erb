@@ -1,0 +1,66 @@
+<div class="list-group venue-menu">
+    <div>    
+        <%= link_to "Listing", listing_venue_path, class: "list-group-item list-group-item-action #{current? "active", listing_venue_path}" %>
+        <% if !@venue.venue_type.blank? %>
+            <i class="far fa-check-circle"></i>
+        <% end %>
+    </div>
+    <div>  
+        <%= link_to "Pricing", pricing_venue_path, class: "list-group-item list-group-item-action #{current? "active", pricing_venue_path}" %>
+        <% if !@venue.price.blank? %>
+            <i class="far fa-check-circle"></i>
+        <% end %>
+    </div>
+    <div>
+        <%= link_to "Description", description_venue_path, class: "list-group-item list-group-item-action #{current? "active", description_venue_path}" %>
+        <% if !@venue.listing_name.blank? %>
+            <i class="far fa-check-circle"></i>
+        <% end %>
+    </div>
+    <div>
+        <%= link_to "Photos", photo_upload_venue_path, class: "list-group-item list-group-item-action #{current? "active", photo_upload_venue_path}" %>
+        <% if !@venue.image.blank? %>
+            <i class="far fa-check-circle"></i>
+        <% end %>
+    </div>
+    <div>
+        <%= link_to "Amenities", amenities_venue_path, class: "list-group-item list-group-item-action #{current? "active", amenities_venue_path}" %>
+    </div>
+    <div>
+        <%= link_to "Location", location_venue_path, class: "list-group-item list-group-item-action #{current? "active", location_venue_path}" %>
+        <% if !@venue.address.blank? %>
+            <i class="far fa-check-circle"></i>
+        <% end %>
+    </div>
+    <hr class="w-100">
+
+    <% is_ready = !@venue.venue_type.blank? && !@venue.price.blank? && !@venue.listing_name.blank? && !@venue.image.blank? && !@venue.address.blank? %>
+
+    <%= form_for @venue do |f| %>
+        <% if !@venue.active %>
+            <%= f.hidden_field :active, value: true %>
+            <%= f.submit "Publish", class: "btn btn-warning btn-block", disabled: !is_ready %>
+        <% else %>
+            <%= f.hidden_field :active, value: false %>
+            <%= f.submit "Unpublish", class: "btn btn-warning btn-block", disabled: !is_ready %>
+        <% end %>
+    <% end %>
+
+</div>
+
+<style>
+.venue-menu > div{
+    margin-bottom: -1px;
+    position:relative;
+    display:flex
+}
+
+.venue-menu i{
+    position: absolute;
+    z-index: 999;
+    right: 17px;
+    top: 17px;
+    color: black;
+}
+
+</style>

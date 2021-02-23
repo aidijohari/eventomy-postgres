@@ -1,0 +1,50 @@
+<%# <div class="row"><h3>My Listings</h3></div> %>
+<div class="row">
+
+
+    <div class="list-group venue-menu col-3">
+        <div>    
+            <%= link_to "Listing", venues_path, class: "list-group-item list-group-item-action #{current? "active", venues_path}" %>
+            <a href="#" class= "list-group-item list-group-item-action">Reservations</a>
+        </div>
+    </div>
+
+    <div class="card mb-3 col-9 p-0">
+        <div class="card-header bg-secondary text-white">Listings</div>
+        <% @venues.each do |venue| %>
+            <div class="card-body d-flex">
+                <% if venue.image.present? %>
+                    <%= image_tag(venue.image, class: "card-img-top", style: "height:110px; width:200px") %> 
+                <% else %>
+                    <img src="" class= "card-img-top" style="height:110px; width:200px; background: grey">
+                <% end %>
+                <div class="ml-5">
+                    <h4 class="card-text"><%= venue.listing_name %></h4>
+                    <%= link_to "Update", listing_venue_path(venue), class: "btn btn-primary" %>
+                    <%= link_to "Show", venue_path(venue), class: "btn btn-info" %>
+                </div>
+            </div>
+            <hr style="margin: 1rem 1.5rem">
+        <% end %>
+    </div>
+
+    <%# if @venues.present? %>
+        <%# @venues.each do |venue| %>
+            <%# <div class="card mt-5 col-3 p-0 mr-4">  %>
+                <%# if venue.image.present? %>
+                    <%#= image_tag(venue.image, class: "card-img-top", style: "height:180px;") %> 
+                <%# else %>
+                    <%# <img src="" class= "card-img-top" style="height:180px;"> %>
+                <%# end %>
+                <%# <div class="card-body">
+                    <div class="card-text"> %>
+                        <%#= link_to  venue.listing_name, listing_venue_path(venue), class: "stretched-link" %>
+                    <%# </div>
+                </div>
+            </div> %>
+        <%# end %>
+    <%# else %>
+        <%# <p>Venues is empty</p> %>
+    <%# end %>
+
+</div>

@@ -55,3 +55,7 @@ gem 'toastr-rails'
 
 gem 'omniauth', '~> 1.6'
 gem 'omniauth-facebook', '~> 8.0'
+
+gem 'geocoder'
+
+gem 'ransack', github: 'activerecord-hackery/ransack'
