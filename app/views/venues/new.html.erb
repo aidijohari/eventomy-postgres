@@ -9,19 +9,29 @@
                     <%= form_for @venue do |f| %>
 
                         <div class="row">
-                            <div class="col-md-6 select">
+                            <div class="col-md-8 select">
                                 <div class="form-group">
                                 <label>Type:</label>
                                 <%= f.select :venue_type, [["Hall", "Hall"], ["Hotel", "Hotel"], ["House", "House"]], {prompt: "Select"}, {id: "type", class: "custom-select"} %>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-6 select">
-                                <div class="form-group">
-                                <label>Accommodate:</label>
-                                <%= f.select(:accommodate, [["< 50", "50"], ["< 100", "100"], ["< 200", "200"]], {prompt: "Select"}, {id: "accommodate", class: "custom-select"}) %>
+                        <label>Accomodates (max):</label>
+                        <div class="row mb-4">
+                            <div class="input-group col-md-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-chair"></i></span>
                                 </div>
+                                <%= f.text_field :seated, placeholder: "Seated", class: "form-control" %>
                             </div>
+
+                            <div class="input-group col-md-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-male"></i></span>
+                                </div>
+                                <%= f.text_field :standing, placeholder: "Standing", class: "form-control" %>
+                            </div>                            
                         </div>
                         <div><%= f.submit "Create Venue", class: "btn btn-success" %></div>
 

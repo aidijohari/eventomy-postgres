@@ -24,7 +24,7 @@
 </style>
 
 
-<div class="row">
+<div class="row venue-profile">
 
     <div class="card mb-3 w-100">
         <%= image_tag @venue.image, width: "100%" %>
@@ -39,7 +39,10 @@
                         <div class="col-md-10">
                             <div class="col-12 mb-3">
                                 <h1 class="mb-0"><%= @venue.listing_name %></h1>
-                                <small class="text-small">SEATED: 200 / STANDING: 400</small>
+                                <small class="text-small">
+                                    SEATED: <%= @venue.seated %> <i class="fas fa-chair"></i> / 
+                                    STANDING: <%= @venue.standing %> <i class="fas fa-male"></i>
+                                </small>
                             </div>
                             <div class="col-6">
                                 <%= @venue.address %>

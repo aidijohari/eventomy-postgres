@@ -4,7 +4,8 @@ class Venue < ApplicationRecord
   has_one_attached  :image
 
   validates :venue_type, presence: true
-  validates :accommodate, presence: true
+  validates :seated, presence: true
+  validates :standing, presence: true
   # validates :listing_name, presence: true
   # validates :summary, presence: true
   # validates :address, presence: true

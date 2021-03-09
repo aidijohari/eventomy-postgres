@@ -15,7 +15,7 @@ class VenuesController < ApplicationController
   def create
     @venue = current_user.venues.build(venue_params)
     # render plain: params[:venue].inspect
-    if @venue.save
+    if @venue.save!
       redirect_to listing_venue_path(@venue), notice: "Venue saved!"
     else
       flash[:alert] = "Something went wrong"
@@ -59,7 +59,7 @@ class VenuesController < ApplicationController
     end
 
     def venue_params
-      params.require(:venue).permit(:venue_type, :accommodate, :price, :listing_name, :summary, :address, :user_id, :image, :active)
+      params.require(:venue).permit(:venue_type, :seated, :standing, :price, :listing_name, :summary, :address, :user_id, :image, :active)
     end
 
   end
