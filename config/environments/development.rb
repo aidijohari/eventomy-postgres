@@ -61,7 +61,7 @@ Rails.application.configure do
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   #CUSTOM
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'https://eventomy-postgres-pxisy.ondigitalocean.app/', port: 3000 }
   #mailer stuff
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
