@@ -1,6 +1,6 @@
 <% if venues.present? %>
     <% venues.each do |venue| %>
-        <div class="card p-0 home-page-venues" style="width:31%">
+        <div class="card p-0 home-page-venues" style="width:25%">
             <% if venue.image.present? %>
                 <%= image_tag(venue.image, class: "card-img-top") %> 
             <% else %>
@@ -8,7 +8,7 @@
             <% end %>
             <div class="card-body">
                 <div class="card-text">
-                    <%= link_to  venue.listing_name, venue_path(venue), class: "stretched-link" %>
+                    <%= link_to venue.listing_name, venue_path(venue), class: "stretched-link" %>
                 </div>
             </div>
         </div> 

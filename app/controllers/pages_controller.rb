@@ -13,7 +13,7 @@ class PagesController < ApplicationController
 
     if session[:loc_search] && session[:loc_search] != ""
       @venues_address = Venue.where(active: true).near(session[:loc_search], 5, order: "distance")
-      @venues_all = Venue.where(active: true).all - @venues_address
+      @venues_all = Venue.where(active: true).all.limit(15) - @venues_address
     else
       @venues_address = Venue.where(active: true).all
     end

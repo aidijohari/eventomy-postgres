@@ -59,3 +59,5 @@ gem 'omniauth-facebook', '~> 8.0'
 gem 'geocoder'
 
 gem 'ransack', github: 'activerecord-hackery/ransack'
+
+gem 'faker'

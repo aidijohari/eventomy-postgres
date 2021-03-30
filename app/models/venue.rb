@@ -14,5 +14,6 @@ class Venue < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed? 
+  before_save :geocode, if: ->(venue){ venue.address.present? }
 
 end

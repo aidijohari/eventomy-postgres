@@ -22,7 +22,7 @@
     <%= render 'shared/message' %>
 
 
-    <div class="container">
+    <div id="<%= params[:controller] %>" class="container <%= params[:action] %>">
       <%# <p class="notice"><%= notice %>
       <%# <p class="alert"><%= alert %>
       <%= yield %>
