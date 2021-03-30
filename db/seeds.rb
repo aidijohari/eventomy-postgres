@@ -6,11 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
+
+User.create(
+    id: "1",
+    email: "aidijohari@gmail.com",
+    fullname: "Aidi Johari",
+    phone_number: "0189689509",
+    description: "Test"
+)
+
+
 Venue.destroy_all
 
 50.times do |i|
-    google_maps_api_key = "AIzaSyCpRjVymCuOdhVvvbECfZFgvRjv7MpXvaw"
-
     venue = Venue.create!(
         id: Faker::Number.unique.between(from: 1, to: 50),
         venue_type: ['Hotel', 'House', 'Hall'].sample(1),
