@@ -16,7 +16,7 @@ Venue.destroy_all
         venue_type: ['Hotel', 'House', 'Hall'].sample(1),
         listing_name: Faker::JapaneseMedia::DragonBall.character,
         summary: Faker::Lorem.sentence(word_count: 3, supplemental: true),
-        # address: Faker::Address.full_address,
+        address: Faker::Address.full_address,
         price: Faker::Number.within(range:10..2000),
         active: "true",
         user_id: "1",
