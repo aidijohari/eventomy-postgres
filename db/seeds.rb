@@ -8,13 +8,15 @@
 
 User.destroy_all
 
-User.create(
+user = User.create(
     id: "1",
     email: "aidijohari@gmail.com",
     fullname: "Aidi Johari",
     phone_number: "0189689509",
-    description: "Test"
+    description: "Test",
+    password: "abc123"
 )
+user.save!
 
 
 Venue.destroy_all
