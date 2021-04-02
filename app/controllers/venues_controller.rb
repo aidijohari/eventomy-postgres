@@ -46,6 +46,11 @@ class VenuesController < ApplicationController
 
   def update
     if @venue.update!(venue_params)
+      if params[:venue][:image].present?
+        params[:venue][:image].each do |image|
+          @venue.image.attach(image)
+        end
+      end
       flash[:notice] = "Venue updated"
     else
       flash[:alert] = "Something went wrong"
@@ -54,7 +59,7 @@ class VenuesController < ApplicationController
   end
 
   private 
-    def set_venue
+    def set_venue 
       @venue = Venue.find(params[:id])
     end
 

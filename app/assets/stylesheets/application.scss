@@ -2,6 +2,12 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap/scss/bootstrap";
 @import "toastr";
+// Required Core Stylesheet
+@import "@glidejs/glide/src/assets/sass/glide.core";
+
+// Optional Theme Stylesheet
+@import "@glidejs/glide/src/assets/sass/glide.theme";
+
 
 nav.navbar{
     min-height: 68px;

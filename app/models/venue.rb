@@ -1,7 +1,7 @@
 class Venue < ApplicationRecord
   belongs_to :user
 
-  has_one_attached  :image
+  has_many_attached  :image
 
   validates :venue_type, presence: true
   validates :seated, presence: true

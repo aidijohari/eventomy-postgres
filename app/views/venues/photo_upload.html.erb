@@ -15,33 +15,40 @@
                         <div class="col-md-4 select">
                             <div class="form-group">
                             <label>Upload Photo:</label>
-                            <%= f.file_field :image, :class => 'form-control' %>
+                            <%= f.file_field :image, multiple: true, :class => 'form-control' %>
                             </div>
                         </div>
-
                     </div>
-                    <div><%= f.submit "Upload", class: "btn btn-success" %></div>
+
+                    <div><%= f.s    ubmit "Upload", class: "btn btn-success" %></div>
 
                 <% end %>
-                
 
                 <%# <% @venue.image.each do |image| %>
                     <%# <%= link_to rails_blob_path(file, disposition: "attachment") do %>
                     <%#= image_tag "placeholder.png", alt: "Download file" %>
                 <%# end %>
 
+                <div class="d-flex flex-wrap">
                 <% if @venue.image.present? %>
+                    <% x = 0 %>
+                    <% @venue.image.each do |venue| %>
                     <div class="card mt-5 col-4 p-0"> 
-                        <%= image_tag(@venue.image, class: "card-img-top") %> 
+                        <%= image_tag(@venue.image[x], class: "card-img-top") %> 
                         <div class="card-body">
                             <div class="card-text">
-                                <a href="#">
+                                <%= link_to venue_image_path(image.venue_id, image), remote: true, method: :delete, data: {confirm: "Are you sure?"} do %>
                                     <i class="ml-auto far fa-trash-alt" style="float:right"></i>
+                                <% end %>
+                                <a href="#">
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <% x+=1%>
+                    <% end %>
                 <% end %>
+                </div>
 
                 </div>
             </div>

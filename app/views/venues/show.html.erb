@@ -27,7 +27,35 @@
 <div class="row venue-profile">
 
     <div class="card mb-3 w-100">
-        <%= image_tag @venue.image, width: "100%" %>
+        <div class="glide">
+            <div data-glide-el="track" class="glide__track">
+                <ul class="glide__slides">
+                    <% x = 0 %>
+                    <% @venue.image.each do |venue| %>
+                    <li class="glide__slide">
+                        <%= image_tag @venue.image[x], width: "100%" %>
+                    </li>
+                    <% x+=1%>
+                    <% end %>
+                </ul>
+            </div>
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+                    <i class="fas fa-caret-left"></i>
+                </button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+                    <i class="fas fa-caret-right"></i>
+                </button>
+            </div>
+            <div class="glide__bullets" data-glide-el="controls[nav]">
+                <% x = 0 %>
+                <% @venue.image.each do |venue| %>
+                <button class="glide__bullet" data-glide-dir="=<%= x %>"></button>
+                <% x+=1%>
+                <% end %>
+            </div>
+        </div>
+        <%# <%= image_tag @venue.image[0], width: "100%" %>
         <div class="card-body">
             <div class="row">
 
@@ -100,7 +128,7 @@
                     <div class="row m-0">
                         <div class="col-3">
                             <div class="card bg-dark text-white">
-                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <%= image_tag @venue.image[0], class: "card-img", style: "" %>
                                 <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
                                     <h5 class="card-title">Event Day @ XYZ</h5>
                                 </div>
@@ -113,7 +141,7 @@
                         </div>
                         <div class="col-3">
                             <div class="card bg-dark text-white">
-                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <%= image_tag @venue.image[0], class: "card-img", style: "" %>
                                 <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
                                     <h5 class="card-title">Event Day @ ABC</h5>
                                 </div>
@@ -126,7 +154,7 @@
                         </div>
                         <div class="col-3">
                             <div class="card bg-dark text-white">
-                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <%= image_tag @venue.image[0], class: "card-img", style: "" %>
                                 <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
                                     <h5 class="card-title">Event Day @ Christmas</h5>
                                 </div>
@@ -139,7 +167,7 @@
                         </div>
                         <div class="col-3">
                             <div class="card bg-dark text-white">
-                                <%= image_tag @venue.image, class: "card-img", style: "" %>
+                                <%= image_tag @venue.image[0], class: "card-img", style: "" %>
                                 <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
                                     <h5 class="card-title">Event Day @ Christmas</h5>
                                 </div>
@@ -181,6 +209,6 @@
       map: map
     });
 
-    infoWindow.open(map, marker);
+    // infoWindow.open(map, marker);
   }
 </script>
