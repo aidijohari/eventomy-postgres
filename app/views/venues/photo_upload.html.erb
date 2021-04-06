@@ -37,9 +37,9 @@
                         <%= image_tag(@venue.image[x], class: "card-img-top") %> 
                         <div class="card-body">
                             <div class="card-text">
-                                <%= link_to venue_image_path(image.venue_id, image), remote: true, method: :delete, data: {confirm: "Are you sure?"} do %>
+                                <%#= link_to venue_image_path(image.venue_id, image), remote: true, method: :delete, data: {confirm: "Are you sure?"} do %>
                                     <i class="ml-auto far fa-trash-alt" style="float:right"></i>
-                                <% end %>
+                                <%# end %>
                                 <a href="#">
                                 </a>
                             </div>
