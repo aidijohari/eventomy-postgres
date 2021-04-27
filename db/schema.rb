@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2021_03_09_015526) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.text "name", null: false
-    t.text "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -44,14 +44,14 @@ ActiveRecord::Schema.define(version: 2021_03_09_015526) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "fullname"
-    t.text "confirmation_token"
+    t.string "fullname"
+    t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.text "provider"
-    t.text "uid"
-    t.text "image"
-    t.text "phone_number"
+    t.string "provider"
+    t.string "uid"
+    t.string "image"
+    t.string "phone_number"
     t.text "description"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_015526) do
     t.text "address"
     t.integer "price"
     t.boolean "active"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "longitude"

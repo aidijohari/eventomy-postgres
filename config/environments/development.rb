@@ -60,17 +60,4 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  #CUSTOM
-  config.action_mailer.perform_deliveries = false
-  config.action_mailer.default_url_options = { host: 'eventomy-postgres-pxisy.ondigitalocean.app/', port: 3000 }
-  #mailer stuff
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      port: 587,
-      enable_starttls_auto: true,
-      authentication: 'plain',
-      user_name: 'aidijohari@gmail.com',
-      password: 'jyuimxwojwruiviq'
-  }
 end
