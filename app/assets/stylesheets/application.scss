@@ -40,6 +40,7 @@ body > .container{
 }
 
 nav {padding: 0.5rem 1rem};
+
 .form-inline {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -114,4 +115,9 @@ nav {padding: 0.5rem 1rem};
 .card-img-top{
     max-height: 20vh;
     object-fit: cover;
+}
+
+.glide--carousel{
+    max-height:600px;
+    overflow:hidden;
 }

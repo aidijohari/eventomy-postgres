@@ -22,7 +22,6 @@ window.addEventListener('load', () => {
        type: "carousel",
        startAt: 1,
        perView: 1,
-       direction: "rtl",
        keyboard: true,
        gap: 0,
        autoplay: "6000",
