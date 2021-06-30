@@ -10,7 +10,6 @@ class VenuesController < ApplicationController
 
   def new
     @venue = current_user.venues.build
-    print "hello";
   end
 
   def create

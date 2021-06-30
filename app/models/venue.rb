@@ -1,6 +1,6 @@
 class Venue < ApplicationRecord
   belongs_to :user
-  has_many :portfolio
+  has_many :portfolio, dependent: :delete_all #deleting association still has problems
 
   #FOR VENUES SELECT2
   def formatted_venue_select
@@ -12,11 +12,11 @@ class Venue < ApplicationRecord
   validates :venue_type, presence: true
   validates :seated, presence: true
   validates :standing, presence: true
-  validates :listing_name, presence: true
-  validates :summary, presence: true
-  validates :address, presence: true
-  validates :price, presence: true
-  validates :active, presence: true
+  validates :listing_name, presence: false
+  validates :summary, presence: false
+  validates :address, presence: false
+  validates :price, presence: false
+  validates :active, presence: false
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed? 
