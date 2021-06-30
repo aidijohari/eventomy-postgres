@@ -1,5 +1,11 @@
 class Venue < ApplicationRecord
   belongs_to :user
+  has_many :portfolio
+
+  #FOR VENUES SELECT2
+  def formatted_venue_select
+    "#{listing_name} #{id}"
+  end
 
   has_many_attached  :image
 

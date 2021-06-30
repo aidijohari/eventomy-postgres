@@ -42,15 +42,8 @@ body > .container{
 nav {padding: 0.5rem 1rem};
 
 .form-inline {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: row wrap;
     flex-flow: row nowrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -114,10 +107,24 @@ nav {padding: 0.5rem 1rem};
 
 .card-img-top{
     max-height: 20vh;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
 }
 
 .glide--carousel{
     max-height:600px;
     overflow:hidden;
+}
+
+#main-splash{
+    width:100vw; 
+    height:650px;
+    background:red;
+    position: absolute;
+    left:0;
+    top:0;
+    
+    background: linear-gradient(90deg, rgba(2,0,36,0.3001401244091386) 0%, rgba(0,0,0,0.5326331216080182) 100%), url(<%= image_url('main-splash.jpg') %>) no-repeat center;
+    background-size: cover;
+    
 }

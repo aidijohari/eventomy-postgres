@@ -61,3 +61,6 @@ gem 'geocoder'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 
 gem 'faker'
+
+# USER ACCESS / PRIVELEGES 
+gem 'cancan'

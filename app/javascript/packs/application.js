@@ -6,12 +6,15 @@
 global.$ = require('jquery')
 
 require("@rails/ujs").start()
+require("bootstrap")
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("select2")
 
 global.toastr = require("toastr")
 
+import 'select2'
 import 'bootstrap'
 import Glide from "@glidejs/glide"
 

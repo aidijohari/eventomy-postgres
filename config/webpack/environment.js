@@ -5,6 +5,8 @@ environment.plugins.append('Provide',
     new webpack.ProvidePlugin({
         $: 'jquery/src/jquery',
         jQuery: 'jquery/src/jquery',
+        'window.jQuery': 'jquery',
+        moment: 'moment',
         Popper: ['popper.js', 'default']
     })
 )

@@ -5,16 +5,17 @@ class VenuesController < ApplicationController
   # before_action :is_authorised, only: [:listing, :pricing, :description, :photo_upload, :amenities, :location, :update]
 
   def index
-    @venues = current_user.venues
+    @venues = current_user.venues 
   end
 
   def new
     @venue = current_user.venues.build
+    print "hello";
   end
 
   def create
     @venue = current_user.venues.build(venue_params)
-    # render plain: params[:venue].inspect
+    # render plain: params[:venue].inspect  
     if @venue.save!
       redirect_to listing_venue_path(@venue), notice: "Venue saved!"
     else
