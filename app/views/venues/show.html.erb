@@ -50,8 +50,8 @@
             <div class="glide__bullets" data-glide-el="controls[nav]">
                 <% x = 0 %>
                 <% @venue.image.each do |venue| %>
-                <button class="glide__bullet" data-glide-dir="=<%= x %>"></button>
-                <% x+=1%>
+                    <button class="glide__bullet" data-glide-dir="=<%= x %>"></button>
+                    <% x+=1%>
                 <% end %>
             </div>
         </div>
@@ -126,11 +126,13 @@
                         <h4>Events</h4>
                     </div>
                     <div class="row m-0">
+                    <% if @venue.portfolio.exists? %>
+                        <% @venue.portfolio.each do |portfolio| %>
                         <div class="col-3">
                             <div class="card bg-dark text-white">
                                 <%= image_tag @venue.image[0], class: "card-img", style: "" %>
                                 <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
-                                    <h5 class="card-title">Event Day @ XYZ</h5>
+                                    <h5 class="card-title"><%= portfolio.title %></h5>
                                 </div>
                                 <div class="card-body">
                                     <div class="btn btn-primary float-right">
@@ -139,45 +141,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-3">
-                            <div class="card bg-dark text-white">
-                                <%= image_tag @venue.image[0], class: "card-img", style: "" %>
-                                <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
-                                    <h5 class="card-title">Event Day @ ABC</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="btn btn-primary float-right">
-                                        Read more
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card bg-dark text-white">
-                                <%= image_tag @venue.image[0], class: "card-img", style: "" %>
-                                <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
-                                    <h5 class="card-title">Event Day @ Christmas</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="btn btn-primary float-right">
-                                        Read more
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="card bg-dark text-white">
-                                <%= image_tag @venue.image[0], class: "card-img", style: "" %>
-                                <div class="card-img-overlay" style="background:rgba(0,0,0,0.3)">
-                                    <h5 class="card-title">Event Day @ Christmas</h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="btn btn-primary float-right">
-                                        Read more
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <% end %>
+                    <% else %>
+                        <div class="col-3">Halo</div>
+                    <% end %>
                     </div>
                 </div>
             </div>
@@ -194,6 +161,10 @@
 
     </div>
 </div>
+
+<script>
+    console.log("lat: <%= @venue.latitude %> / long: <%= @venue.longitude %>")
+</script>
 
 <script>
   function initMap(lat, lng) {

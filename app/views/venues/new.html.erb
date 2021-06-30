@@ -1,4 +1,9 @@
 <div class="row">
+<script>
+    $(document).ready(function() {
+        $('#type').select2();
+    });
+</script>
 
     <div class="col-12">
         <div class="card">
@@ -12,7 +17,7 @@
                             <div class="col-md-8 select">
                                 <div class="form-group">
                                 <label>Type:</label>
-                                <%= f.select :venue_type, [["Hall", "Hall"], ["Hotel", "Hotel"], ["House", "House"]], {prompt: "Select"}, {id: "type", class: "custom-select"} %>
+                                <%= f.select :venue_type, [["Hall", "Hall"], ["Hotel", "Hotel"], ["House", "House"]], {prompt: "select", include_blank: "Select", disabled: '1', selected: '1' }, {id: "type", class: "custom-select"} %>
                                 </div>
                             </div>
                         </div>

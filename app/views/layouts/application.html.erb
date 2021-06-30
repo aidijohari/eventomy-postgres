@@ -10,6 +10,9 @@
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script src="https://kit.fontawesome.com/9a517c42a6.js" crossorigin="anonymous"></script>
 
     <!-- Google Maps -->
@@ -21,7 +24,11 @@
 
   <body>
 
-    <%= render 'shared/navbar' %>
+    <% if params[:controller] == 'pages' && params[:action] == 'home' %>
+      <%= render 'shared/homenavbar' %>
+    <% else %>
+      <%= render 'shared/navbar' %>
+    <% end %> 
     <%= render 'shared/message' %>
 
 

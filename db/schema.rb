@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_015526) do
+ActiveRecord::Schema.define(version: 2021_06_14_031824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.text "name", null: false
-    t.string "record_type", null: false
-    t.bigint "record_id", null: false
-    t.bigint "blob_id", null: false
+    t.text "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -36,6 +36,18 @@ ActiveRecord::Schema.define(version: 2021_03_09_015526) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "portfolios", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.bigint "venue_id", null: false
+    t.text "description"
+    t.date "date"
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
+    t.index ["venue_id"], name: "index_portfolios_on_venue_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.text "email", default: "", null: false
     t.text "encrypted_password", default: "", null: false
@@ -44,14 +56,14 @@ ActiveRecord::Schema.define(version: 2021_03_09_015526) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "fullname"
-    t.string "confirmation_token"
+    t.text "fullname"
+    t.text "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "provider"
-    t.string "uid"
-    t.string "image"
-    t.string "phone_number"
+    t.text "provider"
+    t.text "uid"
+    t.text "image"
+    t.text "phone_number"
     t.text "description"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -66,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_015526) do
     t.text "address"
     t.integer "price"
     t.boolean "active"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "longitude"
@@ -77,5 +89,7 @@ ActiveRecord::Schema.define(version: 2021_03_09_015526) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "portfolios", "users"
+  add_foreign_key "portfolios", "venues"
   add_foreign_key "venues", "users"
 end
